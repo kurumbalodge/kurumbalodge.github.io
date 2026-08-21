@@ -297,11 +297,10 @@
     .close-modal:hover {
       color: #bbb;
     }
- /* ========================================== */
-/* ULTIMATE RESPONSIVE DESIGN (ALL DEVICES)   */
+/* ========================================== */
+/* COMPLETE RESPONSIVE DESIGN (PHOTOS & REVIEWS) */
 /* ========================================== */
 
-/* 1. Global Reset & Performance Improvements */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -314,59 +313,78 @@ html {
 }
 
 body {
-  overflow-x: hidden; /* Prevents unwanted horizontal scrolling on phones */
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-/* 2. Responsive Images & Media */
-img, video, iframe {
+header, nav, footer, section, .container, .row, .card {
   max-width: 100% !important;
-  height: auto !important;
-  display: block;
+  box-sizing: border-box;
 }
 
-/* 3. Mobile Devices (Phones: up to 600px) */
+/* 1. Mobile Devices (Phones: up to 600px) */
 @media (max-width: 600px) {
   body {
     padding: 10px;
   }
 
-  /* Container & Layout adjustments */
-  .container, .row, section, header, footer {
-    width: 100% !important;
-    padding: 12px !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+  /* Navigation Layout */
+  nav, .nav-menu, .navbar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
   }
 
-  /* 2-Column Side-by-Side Image Grid for Phones */
+  /* ALL Image Containers (2-Column Grid) */
+  div:has(> img), section:has(> img), main:has(> img), 
   .gallery, .image-container, .photo-grid, .room-images, .grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
   }
 
-  .gallery img, .image-container img, .photo-grid img, .room-images img {
+  /* Image Display Settings */
+  img {
+    width: 100% !important;
     height: 130px !important;
     object-fit: cover !important;
     border-radius: 8px !important;
   }
 
-  /* Typography for Mobile */
-  h1 { font-size: 22px !important; line-height: 1.3 !important; }
-  h2 { font-size: 18px !important; line-height: 1.3 !important; }
-  h3 { font-size: 16px !important; }
-  p, li { font-size: 14px !important; line-height: 1.5 !important; }
+  /* ALL Review Sections (2-Column Grid) */
+  .reviews, .review-container, .testimonials, .testimonial-grid, 
+  .reviews-grid, .review-section, div:has(> .review-card) {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
 
-  /* Mobile Friendly Buttons */
-  button, .btn, input[type="submit"] {
+  /* Individual Review Cards */
+  .review, .review-card, .testimonial, .testimonial-card, .review-item {
     width: 100% !important;
-    min-height: 44px !important; /* Easy for touch/tap */
-    font-size: 16px !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    height: 100% !important;
+  }
+
+  /* Mobile Typography */
+  h1 { font-size: 22px !important; line-height: 1.3 !important; text-align: center; }
+  h2 { font-size: 18px !important; line-height: 1.3 !important; }
+  h3 { font-size: 15px !important; }
+  p, li, span, a { font-size: 13px !important; }
+
+  /* Touch Friendly Buttons & Form Inputs */
+  button, .btn, input, select, textarea {
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 15px !important;
     margin: 5px 0 !important;
+    padding: 10px !important;
   }
 }
 
-/* 4. Tablets & iPads (601px to 1024px) */
+/* 2. Tablet Devices (601px to 1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
   body {
     padding: 15px;
@@ -377,14 +395,16 @@ img, video, iframe {
     margin: 0 auto !important;
   }
 
-  /* 3-Column Image Grid for Tablets */
-  .gallery, .image-container, .photo-grid, .room-images, .grid {
+  /* 3-Column Grid for Photos & Reviews on Tablets */
+  div:has(> img), section:has(> img), main:has(> img), 
+  .gallery, .image-container, .photo-grid, .room-images,
+  .reviews, .review-container, .testimonials, .testimonial-grid, .reviews-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 12px !important;
   }
 
-  .gallery img, .image-container img, .photo-grid img, .room-images img {
+  img {
     height: 180px !important;
     object-fit: cover !important;
     border-radius: 8px !important;
@@ -395,29 +415,15 @@ img, video, iframe {
   p, li { font-size: 15px !important; }
 }
 
-/* 5. Large Screens & Laptops (1025px and above) */
+/* 3. Laptops & Desktop Displays (1025px and above) */
 @media (min-width: 1025px) {
   .container {
     max-width: 1200px !important;
     margin: 0 auto !important;
   }
-
-  /* 4-Column Image Grid for Laptops */
-  .gallery, .image-container, .photo-grid, .room-images, .grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 15px !important;
-  }
-
-  .gallery img, .image-container img, .photo-grid img, .room-images img {
-    height: 220px !important;
-    object-fit: cover !important;
-    border-radius: 8px !important;
-  }
 }
-
 /* ========================================== */
-/* END OF RESPONSIVE DESIGN                   */
+/* END OF RESPONSIVE CODE                     */
 /* ========================================== */
   </style>
 </head>
