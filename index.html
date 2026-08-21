@@ -83,6 +83,7 @@
       border-radius: 12px; 
       overflow: hidden; 
       box-shadow: 0 6px 16px rgba(0,0,0,0.2); 
+      cursor: pointer;
     }
     .slideshow-card img { width: 100%; height: 380px; object-fit: cover; display: block; }
     .image-caption { 
@@ -97,7 +98,10 @@
     }
 
     /* Features Grid */
-    .features { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
+    .features-section {
+      margin-bottom: 30px;
+    }
+    .features { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 15px; }
     .card { 
       flex: 1; 
       min-width: 220px; 
@@ -125,6 +129,18 @@
     }
     .card h3 { color: #72db8e; margin-bottom: 5px; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
     .card p { color: #ffffff; font-size: 0.9rem; line-height: 1.4; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+
+    /* Info Bar under Features */
+    .services-info-bar {
+      background-color: #2c5e3b;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
     /* Photo Gallery Section */
     .gallery-section {
@@ -246,37 +262,41 @@
       font-size: 0.8rem;
     }
 
-    /* Contact Section */
-    .contact-section { 
-      background: white; 
-      padding: 25px; 
-      border-radius: 10px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-      margin-bottom: 30px; 
-    }
-    .contact-section h2 { 
-      color: #2c5e3b; 
-      margin-bottom: 20px; 
-      font-size: 1.5rem; 
-      border-bottom: 2px solid #eef2f5; 
-      padding-bottom: 8px; 
-    }
-    .contact-grid { display: flex; flex-wrap: wrap; gap: 20px; }
-    .contact-item { 
-      flex: 1; 
-      min-width: 220px; 
-      background: #f4f8f5; 
-      border: 1px solid #d0e1d4; 
-      border-radius: 8px; 
-      padding: 18px; 
-    }
-    .contact-item h3 { color: #2c5e3b; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-    .contact-item ul { list-style: none; }
-    .contact-item li { margin-bottom: 8px; }
-    .contact-item a { color: #1b4326; text-decoration: none; font-weight: 600; }
-    .contact-item a:hover { text-decoration: underline; }
-
     footer { text-align: center; padding: 25px; background: #222; color: #ccc; font-size: 0.9rem; }
+
+    /* Modal for Image Preview (Lightbox) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 40px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #fff;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-modal:hover {
+      color: #bbb;
+    }
   </style>
 </head>
 <body>
@@ -308,39 +328,45 @@
     <div class="slideshow-section">
       <h2>Featured Highlights</h2>
       <div class="slideshow-card">
-        <img id="slide" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/585630673.jpg?k=fdcc6f6e64e28bb47baf789169762e6fdff5ed077281d2b26eac1f686f223366&o=" alt="Kurumba Lodge Gallery">
+        <img id="slide" class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/585630673.jpg?k=fdcc6f6e64e28bb47baf789169762e6fdff5ed077281d2b26eac1f686f223366&o=" alt="Kurumba Lodge Gallery">
         <div class="image-caption">KURUMBA LODGE WILPATTU</div>
       </div>
     </div>
 
-    <!-- Features Grid -->
-    <div class="features">
-      <div class="card card-room">
-        <div class="card-content">
-          <h3>Comfortable Rooms</h3>
-          <p>Double & Family Rooms with A/C and Free Wi-Fi.</p>
+    <!-- Features Grid & Info Bar -->
+    <div class="features-section">
+      <div class="features">
+        <div class="card card-room">
+          <div class="card-content">
+            <h3>Comfortable Rooms</h3>
+            <p>Double & Family Rooms with A/C and Free Wi-Fi.</p>
+          </div>
+        </div>
+
+        <div class="card card-safari">
+          <div class="card-content">
+            <h3>Wilpattu Safari Tours</h3>
+            <p>Full-day and half-day wildlife safari tours in Wilpattu.</p>
+          </div>
+        </div>
+
+        <div class="card card-transport">
+          <div class="card-content">
+            <h3>Transport Services</h3>
+            <p>Transfer services connecting Colombo, Negombo, Puttalam & Wilpattu.</p>
+          </div>
+        </div>
+
+        <div class="card card-food">
+          <div class="card-content">
+            <h3>Delicious Food</h3>
+            <p>Authentic Sri Lankan meals, kottu, fried rice, and vegan options.</p>
+          </div>
         </div>
       </div>
-
-      <div class="card card-safari">
-        <div class="card-content">
-          <h3>Wilpattu Safari Tours</h3>
-          <p>Full-day and half-day wildlife safari tours in Wilpattu.</p>
-        </div>
-      </div>
-
-      <div class="card card-transport">
-        <div class="card-content">
-          <h3>Transport Services</h3>
-          <p>Transfer services connecting Colombo, Negombo, Puttalam & Wilpattu.</p>
-        </div>
-      </div>
-
-      <div class="card card-food">
-        <div class="card-content">
-          <h3>Delicious Food</h3>
-          <p>Authentic Sri Lankan meals, kottu, fried rice, and vegan options.</p>
-        </div>
+      
+      <div class="services-info-bar">
+        <i class="fa-solid fa-circle-info"></i> More details about these services are available below
       </div>
     </div>
 
@@ -348,39 +374,39 @@
     <div class="gallery-section">
       <h2>Photo Gallery</h2>
       <div class="gallery-grid">
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/585630673.jpg?k=fdcc6f6e64e28bb47baf789169762e6fdff5ed077281d2b26eac1f686f223366&o=" alt="Lodge Main View"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/896652772.jpg?k=452cd608ba03afc6e7638783a4a91cafc1b883014363d60f003bcdc06f7ce318&o=" alt="Gallery Photo 1"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/896651992.jpg?k=f0eda24b4e7a7b09857e1efa7b6d93023247046ceecb266ded38cad04314c52d&o=" alt="Gallery Photo 2"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698693.jpg?k=901ceb56d5dd9fc7483c39c475cafd4bcdd64896f6fc26f30d2f652883fb29fe&o=" alt="Gallery Photo 3"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698082.jpg?k=60077af1eb31b980f39d64fc84cfec9f9421eb1553b63f2f5a574c5783256a24&o=" alt="Gallery Photo 4"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802697894.jpg?k=4ade59bc634b2ab891c6c8ec5c969ec05f74f73cf46be42c586cf86b9f1c8624&o=" alt="Gallery Photo 5"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/590522105.jpg?k=f1803d34aecdc3df8b81a3c0041ffcd50169c66bf0c140173a627c156901dd63&o=" alt="Gallery Photo 6"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/585624448.jpg?k=9f6dc5b303c2626d2ffe06d60dfbf292567be2ed3cacb6b6131c60ab375b423a&o=" alt="Gallery Photo 7"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/585631857.jpg?k=6a68fc703084a057d40a5d50748679e3f19dc0363e4571ea7186efe5dafca4d9&o=" alt="Gallery Photo 8"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/846243690.jpg?k=2a76a2209758ef7bbdb49a2b0d8ab691aa81cb831319775e65555618b728ad2c&o=" alt="Gallery Photo 9"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/846245319.jpg?k=15421685bd6b60efbb9dc2dbbe10b3bf423797fee25530a0cab6c4313b623c53&o=" alt="Gallery Photo 10"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/846245407.jpg?k=d3eb8d28cb67b59827eadd08a9946ef04a155a0f4bbc4c68a290bad25e901d7e&o=" alt="Gallery Photo 11"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280562.jpg?k=4cc44765fcf5c5024b05cca0c7d6b5ac0bd2e288cecc963e258f9b4e2786d984&o=" alt="Gallery Photo 12"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280540.jpg?k=c79ed3bfb4ae27c6287061d0e0e01338acafe0d84c7f60fe6b581f117afbb2b7&o=" alt="Gallery Photo 13"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280571.jpg?k=5d7c00db2df396b3d7f1738b048263afef8cf4d76de14be9d6570771db0c1351&o=" alt="Gallery Photo 14"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280663.jpg?k=6486d9f0e61eaef3b3cfd4534969909b570d95c3ea00e42c92a6b43c4d514e35&o=" alt="Gallery Photo 15"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280662.jpg?k=576a7639e21c33dec15ea31c6b1fe7c71df3e457ae39dce98590c96435f05462&o=" alt="Gallery Photo 16"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/908598291.jpg?k=3d0f4c1e2ecea9264ecf3ad40852e5a7eebdab4d617e45f56dab5698046a4fde&o=" alt="Gallery Photo 17"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/621779625.jpg?k=aaa6374b4091ebf512a31a0f495b9bf421b910b331e4e010d0886a8bdcc42e29&o=" alt="Gallery Photo 18"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/621778467.jpg?k=6e19620910ca33bf98f39401ac1f7929a5b893b5dbb32fbdfe68c725c3617453&o=" alt="Gallery Photo 19"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/717284455.jpg?k=9b1f9811ad8547737343c7d3992b2af01f5faacb7294d1cc3ff4acf0ec5070d7&o=" alt="Gallery Photo 20"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/846245408.jpg?k=fc98841a93e9896b408fd8f2d4c7e86e23f7f57022322af3976fe6cbef3f45a2&o=" alt="Gallery Photo 21"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/846243786.jpg?k=01fdb298ac7b0bb25c8a52399af1ba58ff56eeb95f8fc879414decac74e1608d&o=" alt="Gallery Photo 22"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/908598413.jpg?k=9e3ba6ebaca201f9b9eaf6dff58cfb9e6b54cf942416cf86e952f8ecc28860bb&o=" alt="Gallery Photo 23"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698483.jpg?k=8421e5dd3cd919bff8fd8190a73aa43e2ffed09fc8a1e908ac9dbbd9fd31cee3&o=" alt="Lodge Exterior"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698522.jpg?k=976b7a6d0d9a5ce39573267b0c8c4b1372b17d5005162155a8e545f83931414c&o=" alt="Lodge Surroundings"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698595.jpg?k=ed948d0e70034053ab4c5e9dcead746e9ae600928342239f1c2c90937d4a5285&o=" alt="Garden & Nature"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698631.jpg?k=c88b3412bf5d74669360116f488de6a9dbe5e3adbae51a309f8bc45a9ce26422&o=" alt="Relaxing Area"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698546.jpg?k=ccc8a073503e77b42ced427d706476adb5b9746f9cdb92a2f359db830618de8e&o=" alt="Property View"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/max1920x1080/717284300.webp?k=4d66ea0a7b45d547626863019cff26ab8e7fc524190a4185ccde09ab8c2ac48e&o=&a=2195102" alt="Room View"></div>
-        <div class="gallery-item"><img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698309.jpg?k=d1c5740d621e2ca722014b80e1201b4fb56b0f4508b01ef058adaa227691285f&o=" alt="Safari Jeep"></div>
-        <div class="gallery-item"><img src="https://capitalwindkalpitiya.com/wp-content/uploads/2020/09/9248cb0d-8d44-4070-a68f-5df9dcffe955-scaled.jpeg" alt="Sri Lankan Food"></div>
-        <div class="gallery-item"><img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0a/b3/fc/81.jpg" alt="Transport Service"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/585630673.jpg?k=fdcc6f6e64e28bb47baf789169762e6fdff5ed077281d2b26eac1f686f223366&o=" alt="Lodge Main View"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/896652772.jpg?k=452cd608ba03afc6e7638783a4a91cafc1b883014363d60f003bcdc06f7ce318&o=" alt="Gallery Photo 1"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/896651992.jpg?k=f0eda24b4e7a7b09857e1efa7b6d93023247046ceecb266ded38cad04314c52d&o=" alt="Gallery Photo 2"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698693.jpg?k=901ceb56d5dd9fc7483c39c475cafd4bcdd64896f6fc26f30d2f652883fb29fe&o=" alt="Gallery Photo 3"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698082.jpg?k=60077af1eb31b980f39d64fc84cfec9f9421eb1553b63f2f5a574c5783256a24&o=" alt="Gallery Photo 4"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802697894.jpg?k=4ade59bc634b2ab891c6c8ec5c969ec05f74f73cf46be42c586cf86b9f1c8624&o=" alt="Gallery Photo 5"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/590522105.jpg?k=f1803d34aecdc3df8b81a3c0041ffcd50169c66bf0c140173a627c156901dd63&o=" alt="Gallery Photo 6"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/585624448.jpg?k=9f6dc5b303c2626d2ffe06d60dfbf292567be2ed3cacb6b6131c60ab375b423a&o=" alt="Gallery Photo 7"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/585631857.jpg?k=6a68fc703084a057d40a5d50748679e3f19dc0363e4571ea7186efe5dafca4d9&o=" alt="Gallery Photo 8"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/846243690.jpg?k=2a76a2209758ef7bbdb49a2b0d8ab691aa81cb831319775e65555618b728ad2c&o=" alt="Gallery Photo 9"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/846245319.jpg?k=15421685bd6b60efbb9dc2dbbe10b3bf423797fee25530a0cab6c4313b623c53&o=" alt="Gallery Photo 10"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/846245407.jpg?k=d3eb8d28cb67b59827eadd08a9946ef04a155a0f4bbc4c68a290bad25e901d7e&o=" alt="Gallery Photo 11"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280562.jpg?k=4cc44765fcf5c5024b05cca0c7d6b5ac0bd2e288cecc963e258f9b4e2786d984&o=" alt="Gallery Photo 12"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280540.jpg?k=c79ed3bfb4ae27c6287061d0e0e01338acafe0d84c7f60fe6b581f117afbb2b7&o=" alt="Gallery Photo 13"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280571.jpg?k=5d7c00db2df396b3d7f1738b048263afef8cf4d76de14be9d6570771db0c1351&o=" alt="Gallery Photo 14"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280663.jpg?k=6486d9f0e61eaef3b3cfd4534969909b570d95c3ea00e42c92a6b43c4d514e35&o=" alt="Gallery Photo 15"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280662.jpg?k=576a7639e21c33dec15ea31c6b1fe7c71df3e457ae39dce98590c96435f05462&o=" alt="Gallery Photo 16"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/908598291.jpg?k=3d0f4c1e2ecea9264ecf3ad40852e5a7eebdab4d617e45f56dab5698046a4fde&o=" alt="Gallery Photo 17"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/621779625.jpg?k=aaa6374b4091ebf512a31a0f495b9bf421b910b331e4e010d0886a8bdcc42e29&o=" alt="Gallery Photo 18"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/621778467.jpg?k=6e19620910ca33bf98f39401ac1f7929a5b893b5dbb32fbdfe68c725c3617453&o=" alt="Gallery Photo 19"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/717284455.jpg?k=9b1f9811ad8547737343c7d3992b2af01f5faacb7294d1cc3ff4acf0ec5070d7&o=" alt="Gallery Photo 20"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/846245408.jpg?k=fc98841a93e9896b408fd8f2d4c7e86e23f7f57022322af3976fe6cbef3f45a2&o=" alt="Gallery Photo 21"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/846243786.jpg?k=01fdb298ac7b0bb25c8a52399af1ba58ff56eeb95f8fc879414decac74e1608d&o=" alt="Gallery Photo 22"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/908598413.jpg?k=9e3ba6ebaca201f9b9eaf6dff58cfb9e6b54cf942416cf86e952f8ecc28860bb&o=" alt="Gallery Photo 23"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698483.jpg?k=8421e5dd3cd919bff8fd8190a73aa43e2ffed09fc8a1e908ac9dbbd9fd31cee3&o=" alt="Lodge Exterior"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698522.jpg?k=976b7a6d0d9a5ce39573267b0c8c4b1372b17d5005162155a8e545f83931414c&o=" alt="Lodge Surroundings"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698595.jpg?k=ed948d0e70034053ab4c5e9dcead746e9ae600928342239f1c2c90937d4a5285&o=" alt="Garden & Nature"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698631.jpg?k=c88b3412bf5d74669360116f488de6a9dbe5e3adbae51a309f8bc45a9ce26422&o=" alt="Relaxing Area"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698546.jpg?k=ccc8a073503e77b42ced427d706476adb5b9746f9cdb92a2f359db830618de8e&o=" alt="Property View"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/max1920x1080/717284300.webp?k=4d66ea0a7b45d547626863019cff26ab8e7fc524190a4185ccde09ab8c2ac48e&o=&a=2195102" alt="Room View"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698309.jpg?k=d1c5740d621e2ca722014b80e1201b4fb56b0f4508b01ef058adaa227691285f&o=" alt="Safari Jeep"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://capitalwindkalpitiya.com/wp-content/uploads/2020/09/9248cb0d-8d44-4070-a68f-5df9dcffe955-scaled.jpeg" alt="Sri Lankan Food"></div>
+        <div class="gallery-item"><img class="clickable-img" src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0a/b3/fc/81.jpg" alt="Transport Service"></div>
       </div>
     </div>
 
@@ -717,42 +743,12 @@
       </div>
     </div>
 
-    <!-- Contact Section -->
-    <div class="contact-section">
-      <h2>Contact Us</h2>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <h3><i class="fa-solid fa-phone"></i> Direct Calls</h3>
-          <ul>
-            <li><a href="tel:+94701301442">+94 70 130 1442</a></li>
-          </ul>
-        </div>
+  </div>
 
-        <div class="contact-item">
-          <h3><i class="fa-brands fa-whatsapp"></i> WhatsApp</h3>
-          <ul>
-            <li><a href="https://wa.me/94701301442" target="_blank">+94 70 130 1442</a></li>
-            <li><a href="https://wa.me/94770593416" target="_blank">+94 77 059 3416</a></li>
-          </ul>
-        </div>
-
-        <div class="contact-item">
-          <h3><i class="fa-solid fa-comment-sms"></i> Direct SMS</h3>
-          <ul>
-            <li><a href="sms:+94701301442">+94 70 130 1442</a></li>
-            <li><a href="sms:+94770593416">+94 77 059 3416</a></li>
-          </ul>
-        </div>
-
-        <div class="contact-item">
-          <h3><i class="fa-solid fa-map-location-dot"></i> Location</h3>
-          <ul>
-            <li><a href="https://maps.app.goo.gl/2r3PnSVP15FN7Skg7?g_st=aw" target="_blank">Open in Google Maps</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
+  <!-- Image Modal Popup -->
+  <div id="imgModal" class="modal">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <img class="modal-content" id="modalImg" alt="Enlarged View">
   </div>
 
   <footer>
@@ -760,6 +756,7 @@
   </footer>
 
   <script>
+    // Slideshow Script
     const images = [
       "https://q-xx.bstatic.com/xdata/images/hotel/square200/585630673.jpg?k=fdcc6f6e64e28bb47baf789169762e6fdff5ed077281d2b26eac1f686f223366&o=",
       "https://q-xx.bstatic.com/xdata/images/hotel/square200/802698483.jpg?k=8421e5dd3cd919bff8fd8190a73aa43e2ffed09fc8a1e908ac9dbbd9fd31cee3&o=",
@@ -776,7 +773,587 @@
       currentIndex = (currentIndex + 1) % images.length;
       slideImg.src = images[currentIndex];
     }, 2000);
+
+    // Modal Image Lightbox Script
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImg");
+    const closeModal = document.getElementById("closeModal");
+    const clickableImages = document.querySelectorAll(".clickable-img");
+
+    clickableImages.forEach(img => {
+      img.addEventListener("click", function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+      });
+    });
+
+    closeModal.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
   </script>
 
 </body>
 </html>
+<div style="background: linear-gradient(135deg, #1e5631, #004085); color: #ffffff; text-align: center; padding: 15px 20px; font-size: 1.2rem; font-weight: 600; letter-spacing: 0.5px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  🌿 Discover More Unique Experiences & Activities You Can Enjoy With Us! 🐘
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wilpattu Safari Packages - Kurumba Lodge</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', Arial, sans-serif; 
+      background-color: #f4f7f6; 
+      margin: 0; 
+      padding: 20px; 
+    }
+    .container { 
+      max-width: 900px; 
+      margin: 0 auto; 
+      background-color: #eef6fc; 
+      border: 2px solid #bce0fd; 
+      border-radius: 12px; 
+      padding: 25px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+    }
+    h1, h3 { color: #004085; }
+    .btn-back { 
+      display: inline-block; 
+      padding: 10px 18px; 
+      background-color: #004085; 
+      color: white; 
+      text-decoration: none; 
+      border-radius: 6px; 
+      margin-bottom: 20px; 
+      font-weight: bold; 
+    }
+    .gallery { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+      gap: 12px; 
+      margin-bottom: 30px; 
+    }
+    .gallery img { 
+      width: 100%; 
+      height: 140px; 
+      object-fit: cover; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: transform 0.2s; 
+    }
+    .gallery img:hover { transform: scale(1.05); }
+    .details-box { 
+      background-color: #ffffff; 
+      padding: 20px; 
+      border-radius: 8px; 
+      color: #1a252f; 
+      line-height: 1.7; 
+      border-left: 5px solid #0056b3; 
+    }
+    .warning-box { 
+      background-color: #fff3cd; 
+      border: 1px solid #ffeeba; 
+      padding: 15px; 
+      border-radius: 6px; 
+      margin-top: 15px; 
+      color: #856404; 
+    }
+    /* Lightbox Modal */
+    .modal { 
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(0,0,0,0.85); 
+      text-align: center; 
+    }
+    .modal-content { 
+      max-width: 90%; 
+      max-height: 85%; 
+      margin: auto; 
+      position: absolute; 
+      top: 0; bottom: 0; left: 0; right: 0; 
+      border-radius: 8px; 
+    }
+    .close-btn { 
+      position: absolute; 
+      top: 20px; 
+      right: 35px; 
+      color: #fff; 
+      font-size: 40px; 
+      font-weight: bold; 
+      cursor: pointer; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="index.html" class="btn-back">⬅ Back to Home</a>
+
+    <h1>Wilpattu Safari Packages & Gallery</h1>
+
+    <h3>Safari Gallery</h3>
+    <div class="gallery">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/802698309.jpg?k=d1c5740d621e2ca722014b80e1201b4fb56b0f4508b01ef058adaa227691285f&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/802697894.jpg?k=4ade59bc634b2ab891c6c8ec5c969ec05f74f73cf46be42c586cf86b9f1c8624&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/802697804.jpg?k=d838ba51d971a15562360ac31b4e6c742e9bf666c37b049c32da6a6a650e5709&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/901280571.jpg?k=5d7c00db2df396b3d7f1738b048263afef8cf4d76de14be9d6570771db0c1351&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/901280598.jpg?k=76fdbe393f63fdca13ca6e30a2a1ea97ef9071d21f416488b0a2151d70ef24a0&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/901280605.jpg?k=504500fadaacbf3a42f8af5897e70584770a638f220db09df7e2ab6327262c98&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/901280613.jpg?k=f2a962074147ea87f0ec84559305cb4e1480d78714080e8565e38566575b7b4b&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/802698369.jpg?k=2074b64297e2389c688ea7a6e9501f96c750595694d41b8ccf6b6ce8a4eeaa73&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280562.jpg?k=4cc44765fcf5c5024b05cca0c7d6b5ac0bd2e288cecc963e258f9b4e2786d984&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280574.jpg?k=fa0d301c74455af62e0015f276f7f6ab15ea6162442ffdfa42ad6257c51e754d&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/901280662.jpg?k=576a7639e21c33dec15ea31c6b1fe7c71df3e457ae39dce98590c96435f05462&o=" onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="details-box">
+      <h3>Safari Details & Pricing</h3>
+      <p>Hi,</p>
+      <p>We organize full day, half day, and night safari game rides. Our rates are as follows:</p>
+      <ul>
+        <li><strong>Full Day Safari (12 hrs):</strong> Rs 42,000/= <em>(Includes packed lunch for 2 pax only)</em></li>
+        <li><strong>Half Day Safari (4 ½ to 5 hrs):</strong> Rs 21,000/= <em>(For 2 pax only)</em></li>
+        <li><strong>Night Safari (4 hrs):</strong> Rs 20,000/= <em>(Valid for up to 6 pax)</em></li>
+      </ul>
+      <p>All our drivers are very well trained, reliable, and highly experienced in order to guarantee our guests the best wildlife experience.</p>
+      <p><em>* Above prices for Full Day and Half Day safaris are for 2 pax only. We will arrange a price and let you know if there are more guests (for full day safari). Night Safari rate covers up to 6 pax.</em></p>
+      
+      <div class="warning-box">
+        <p style="margin: 0 0 8px 0;"><strong>Important Information:</strong></p>
+        <ul style="margin: 0; padding-left: 20px;">
+          <li>Kindly settle the above amounts only to the hotel.</li>
+          <li>We will not be responsible if the above mentioned amounts are paid to anyone else other than the hotel.</li>
+          <li>You will also require Sri Lankan Rupees to purchase your entrance fee tickets from the National Park office for your safari.</li>
+          <li>Also kindly be informed that above rates are <strong>EXCLUDING</strong> the entrance fee.</li>
+          <li><strong>No hidden charges.</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="lightboxModal" class="modal" onclick="closeLightbox()">
+    <span class="close-btn">&times;</span>
+    <img id="lightboxImg" class="modal-content">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxModal').style.display = 'block';
+    }
+    function closeLightbox() {
+      document.getElementById('lightboxModal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traditional Village Walk - Kurumba Lodge</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', Arial, sans-serif; 
+      background-color: #f4f7f6; 
+      margin: 0; 
+      padding: 20px; 
+    }
+    .container { 
+      max-width: 900px; 
+      margin: 0 auto; 
+      background-color: #f2f9f1; 
+      border: 2px solid #c3e6cb; 
+      border-radius: 12px; 
+      padding: 25px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+    }
+    h1, h3 { color: #1e5631; }
+    .btn-back { 
+      display: inline-block; 
+      padding: 10px 18px; 
+      background-color: #1e5631; 
+      color: white; 
+      text-decoration: none; 
+      border-radius: 6px; 
+      margin-bottom: 20px; 
+      font-weight: bold; 
+    }
+    .gallery { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+      gap: 15px; 
+      margin-bottom: 30px; 
+    }
+    .gallery img { 
+      width: 100%; 
+      height: 160px; 
+      object-fit: cover; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: transform 0.2s; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .gallery img:hover { transform: scale(1.04); }
+    .details-box { 
+      background-color: #ffffff; 
+      padding: 25px; 
+      border-radius: 8px; 
+      color: #1a252f; 
+      line-height: 1.8; 
+      border-left: 5px solid #28a745; 
+    }
+    .price-tag {
+      display: inline-block;
+      background-color: #28a745;
+      color: white;
+      padding: 6px 14px;
+      font-weight: bold;
+      border-radius: 20px;
+      margin-top: 10px;
+      font-size: 1.1em;
+    }
+    .highlight-list {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    .highlight-list li {
+      margin-bottom: 8px;
+    }
+    .warning-box { 
+      background-color: #fff3cd; 
+      border: 1px solid #ffeeba; 
+      padding: 15px; 
+      border-radius: 6px; 
+      margin-top: 20px; 
+      color: #856404; 
+    }
+    /* Lightbox Modal */
+    .modal { 
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(0,0,0,0.85); 
+      text-align: center; 
+    }
+    .modal-content { 
+      max-width: 90%; 
+      max-height: 85%; 
+      margin: auto; 
+      position: absolute; 
+      top: 0; bottom: 0; left: 0; right: 0; 
+      border-radius: 8px; 
+    }
+    .close-btn { 
+      position: absolute; 
+      top: 20px; 
+      right: 35px; 
+      color: #fff; 
+      font-size: 40px; 
+      font-weight: bold; 
+      cursor: pointer; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="index.html" class="btn-back">⬅ Back to Home</a>
+
+    <h1>Authentic Village Walk Experience</h1>
+
+    <h3>Village Walk Photo Gallery</h3>
+    <div class="gallery">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/590522105.jpg?k=f1803d34aecdc3df8b81a3c0041ffcd50169c66bf0c140173a627c156901dd63&o=" onclick="openLightbox(this.src)">
+      <img src="https://q-xx.bstatic.com/xdata/images/hotel/square200/590521772.jpg?k=2c6a4f58e7dd1c3fd25fe6e085ad2c3f36294c5f418f8d2ffdd7f2c9f291f329&o=" onclick="openLightbox(this.src)">
+      <img src="https://www.bestoflanka.com/images/best-rural-village-walks-in-sri-lanka.jpg" onclick="openLightbox(this.src)">
+      <img src="https://www.srilankaecotourism.lk/images/itineraries/slider/village-walk-in-habarana-and-sigiriya/village-walk-in-habarana-and-sigiriya.jpg" onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="details-box">
+      <h3>Experience Real Rural Life & Nature</h3>
+      <p>Immerse yourself in the serene beauty and rich cultural heritage of rural Sri Lanka with our guided <strong>Traditional Village Walk</strong>. Designed to offer a peaceful escape into nature, this walk allows you to explore the untouched surroundings around Kurumba Lodge.</p>
+
+      <span class="price-tag">Price: Rs 5,000/= | Duration: 2 Hours</span>
+
+      <h4 style="margin-top: 20px; color: #1e5631;">Tour Highlights:</h4>
+      <ul class="highlight-list">
+        <li><strong>Scenic Lake Trails:</strong> Stroll along lush pathways bordering quiet local lakes (Wewa), enjoying fresh breezes and picturesque landscapes.</li>
+        <li><strong>Lush Jungle Borders:</strong> Walk alongside natural forest patches, observing wild flora, tropical plants, and native wildlife.</li>
+        <li><strong>Bird Watching Opportunities:</strong> Spot vibrant local and migratory bird species inhabiting the lake areas and tree canopies.</li>
+        <li><strong>Ancient Temple Visits:</strong> Visit serene rural Buddhist temples, experience peaceful spiritual surroundings, and learn about local traditions.</li>
+        <li><strong>Authentic Rural Life:</strong> Interact with friendly villagers and experience the authentic, everyday lifestyle of Sri Lankan village culture.</li>
+      </ul>
+
+      <p>Whether you want a refreshing morning stroll or a peaceful late afternoon sunset walk, our Village Walk offers a memorable connection with Sri Lanka's nature and heritage.</p>
+
+      <div class="warning-box">
+        <p style="margin: 0 0 8px 0;"><strong>Important Notes:</strong></p>
+        <ul style="margin: 0; padding-left: 20px;">
+          <li>Comfortable walking shoes and lightweight cotton clothing are recommended.</li>
+          <li>Sun protection (hat/sunglasses) and insect repellent are advised.</li>
+          <li>When visiting local temples, please wear clothing that covers shoulders and knees.</li>
+          <li>Kindly settle payment directly with the hotel management.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="lightboxModal" class="modal" onclick="closeLightbox()">
+    <span class="close-btn">&times;</span>
+    <img id="lightboxImg" class="modal-content">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxModal').style.display = 'block';
+    }
+    function closeLightbox() {
+      document.getElementById('lightboxModal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
+<!-- ============================================ -->
+<!-- Dining in the Wild Section -->
+<!-- ============================================ -->
+
+<style>
+  .dining-wild-section {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .dining-wild-section h2 {
+    color: #2c5e3b;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+  }
+  .dining-wild-description {
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .dining-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  .dining-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    height: 220px;
+    cursor: pointer;
+  }
+  .dining-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .dining-card:hover img {
+    transform: scale(1.08);
+  }
+  .dining-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    padding: 12px;
+    color: #ffffff;
+  }
+  .dining-card-overlay h4 {
+    color: #72db8e;
+    font-size: 1rem;
+    margin-bottom: 3px;
+  }
+  .dining-card-overlay p {
+    font-size: 0.8rem;
+    opacity: 0.9;
+  }
+</style>
+
+<div class="dining-wild-section">
+  <h2>Dining in the Wild</h2>
+  <p class="dining-wild-description">
+    Experience an unforgettable evening deep inside the wilderness. Enjoy a traditional campfire, barbecue nights, and authentic Sri Lankan village meals served under the starlit sky.
+  </p>
+
+  <div class="dining-grid">
+    
+    <!-- Photo 1 -->
+    <div class="dining-card">
+      <img class="clickable-img" src="https://akariphototours.com/wp-content/uploads/2025/01/sundowner-1024x559.jpg" alt="Sundowner in the Wild">
+      <div class="dining-card-overlay">
+        <h4>Sundowner Experience</h4>
+        <p>Evening drinks and twilight views in the jungle.</p>
+      </div>
+    </div>
+
+    <!-- Photo 2 -->
+    <div class="dining-card">
+      <img class="clickable-img" src="https://pictures.trodly.com/image/activity/1931/size-390x185/mode-crop/5b696f3189d5e.jpg" alt="Campfire & BBQ Night">
+      <div class="dining-card-overlay">
+        <h4>Jungle Campfire & BBQ</h4>
+        <p>Warm bonfire setup with grilled delicacies.</p>
+      </div>
+    </div>
+
+    <!-- Photo 3 -->
+    <div class="dining-card">
+      <img class="clickable-img" src="https://q-xx.bstatic.com/xdata/images/hotel/square200/621779625.jpg?k=aaa6374b4091ebf512a31a0f495b9bf421b910b331e4e010d0886a8bdcc42e29&o=" alt="Traditional Village Food">
+      <div class="dining-card-overlay">
+        <h4>Authentic Village Meals</h4>
+        <p>Traditional local cuisine prepared in the wild.</p>
+      </div>
+    </div>
+
+    <!-- Photo 4 -->
+    <div class="dining-card">
+      <img class="clickable-img" src="https://mgt.sjp.ac.lk/fin/wp-content/uploads/2019/12/IMG-20190826-WA0028.jpg" alt="Wild Dining Gathering">
+      <div class="dining-card-overlay">
+        <h4>Outdoor Feast Gathering</h4>
+        <p>Delicious Sri Lankan food served in nature.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ============================================ -->
+<!-- Contact Details Section -->
+<!-- ============================================ -->
+
+<style>
+  .contact-section {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-top: 4px solid #2c5e3b;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .contact-section h2 {
+    color: #2c5e3b;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #a3b18a;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+  .contact-table td {
+    padding: 10px 0;
+    vertical-align: top;
+  }
+  .contact-label {
+    font-weight: bold;
+    width: 32%;
+    color: #2c5e3b;
+  }
+  .contact-value {
+    color: #444;
+  }
+  .contact-link {
+    color: #2c5e3b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+  }
+  .contact-link:hover {
+    color: #1b3a24;
+    text-decoration: underline;
+  }
+  .contact-icon {
+    margin-right: 6px;
+  }
+  .icon-phone { color: #27ae60; }
+  .icon-whatsapp { color: #25d366; }
+  .icon-sms { color: #2980b9; }
+</style>
+
+<div class="contact-section">
+  <h2><i class="fa-solid fa-address-book"></i> Contact Details</h2>
+  
+  <table class="contact-table">
+    <tr>
+      <td class="contact-label">Property Name:</td>
+      <td class="contact-value">Kurumba Lodge</td>
+    </tr>
+    <tr>
+      <td class="contact-label">Location / Address:</td>
+      <td class="contact-value">Anuradhapura, Sri Lanka</td>
+    </tr>
+    <tr>
+      <td class="contact-label">Direct Phone Call:</td>
+      <td class="contact-value">
+        <a href="tel:+94701301442" class="contact-link">
+          <i class="fa-solid fa-phone contact-icon icon-phone"></i>+94 70 130 1442
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td class="contact-label">WhatsApp (Call & Message):</td>
+      <td class="contact-value">
+        <a href="https://wa.me/94701301442" target="_blank" class="contact-link">
+          <i class="fa-brands fa-whatsapp contact-icon icon-whatsapp"></i>+94 70 130 1442
+        </a>
+        &nbsp;|&nbsp;
+        <a href="https://wa.me/94770593416" target="_blank" class="contact-link">
+          <i class="fa-brands fa-whatsapp contact-icon icon-whatsapp"></i>+94 77 059 3416
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td class="contact-label">SMS / Direct Message:</td>
+      <td class="contact-value">
+        <a href="sms:+94701301442" class="contact-link">
+          <i class="fa-solid fa-comment-sms contact-icon icon-sms"></i>+94 70 130 1442
+        </a>
+        &nbsp;|&nbsp;
+        <a href="sms:+94770593416" class="contact-link">
+          <i class="fa-solid fa-comment-sms contact-icon icon-sms"></i>+94 77 059 3416
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td class="contact-label">Services Offered:</td>
+      <td class="contact-value">Accommodation, Wilpattu Safari Tours, Transport & Transfers, Meals (Sri Lankan Cuisine & Vegan Options)</td>
+    </tr>
+  </table>
+</div>
