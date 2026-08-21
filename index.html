@@ -297,8 +297,8 @@
     .close-modal:hover {
       color: #bbb;
     }
-/* ========================================== */
-/* FINAL FIXED RESPONSIVE DESIGN (PROPORTIONAL IMAGES) */
+    /* ========================================== */
+/* FINAL PERFECT SIZE RESPONSIVE DESIGN       */
 /* ========================================== */
 
 /* Mobile Devices (Phones: up to 600px) */
@@ -327,13 +327,13 @@
     gap: 8px !important;
   }
 
-  /* Proportional Square Images for Mobile */
+  /* Perfectly Sized Photos (Wider & Balanced Height) */
   .gallery-grid img, 
   .gallery-item img, 
   .clickable-img {
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: 1 / 1 !important; /* Makes images perfectly proportioned */
+    aspect-ratio: 4 / 3 !important; /* Ideal 4:3 display ratio for clear visibility */
     object-fit: cover !important;
     border-radius: 8px !important;
   }
@@ -362,7 +362,7 @@
   .gallery-grid img, .gallery-item img, .clickable-img {
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: 1 / 1 !important;
+    aspect-ratio: 4 / 3 !important;
     object-fit: cover !important;
   }
 }
