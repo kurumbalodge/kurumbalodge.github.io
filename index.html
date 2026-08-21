@@ -298,46 +298,51 @@
       color: #bbb;
     }
 /* ========================================== */
-/* FIXED SAFE RESPONSIVE DESIGN               */
+/* FINAL FIXED RESPONSIVE DESIGN              */
 /* ========================================== */
 
 /* Mobile Devices (Phones: up to 600px) */
 @media (max-width: 600px) {
-  /* Prevent horizontal scrolling only */
   html, body {
     max-width: 100% !important;
     overflow-x: hidden !important;
   }
 
-  /* Reset layout containers safely */
   .container, section, header, footer {
     width: 100% !important;
     padding: 10px !important;
     box-sizing: border-box !important;
   }
 
-  /* Responsive Images Grid */
-  .gallery, .image-container, .photo-grid, .room-images {
+  /* Photo Gallery Grid Fix (2-Column View) */
+  .gallery-grid, 
+  .gallery-section, 
+  .gallery, 
+  .photo-gallery, 
+  .gallery-container, 
+  .photo-grid, 
+  .image-container {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
   }
 
-  .gallery img, .image-container img, .photo-grid img, .room-images img {
+  .gallery-grid img, 
+  .gallery-item img, 
+  .clickable-img {
     width: 100% !important;
     height: 130px !important;
     object-fit: cover !important;
     border-radius: 8px !important;
   }
 
-  /* Responsive Reviews Grid */
+  /* Reviews Grid Fix (2-Column View) */
   .reviews, .review-container, .testimonials, .reviews-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
   }
 
-  /* Text size safety for mobile */
   h1 { font-size: 22px !important; }
   h2 { font-size: 18px !important; }
   p, li { font-size: 14px !important; }
@@ -345,14 +350,14 @@
 
 /* Tablets (601px to 1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
-  .gallery, .image-container, .photo-grid, .room-images,
+  .gallery-grid, .gallery-section, .gallery, .photo-gallery, 
   .reviews, .review-container, .testimonials, .reviews-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 12px !important;
   }
 
-  .gallery img, .image-container img, .photo-grid img, .room-images img {
+  .gallery-grid img, .gallery-item img, .clickable-img {
     height: 180px !important;
     object-fit: cover !important;
   }
