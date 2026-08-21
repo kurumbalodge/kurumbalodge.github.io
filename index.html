@@ -298,9 +298,10 @@
       color: #bbb;
     }
 /* ========================================== */
-/* FINAL FIXED RESPONSIVE DESIGN (BIGGER IMGS)*/
+/* FINAL FIXED RESPONSIVE DESIGN (PROPORTIONAL IMAGES) */
 /* ========================================== */
 
+/* Mobile Devices (Phones: up to 600px) */
 @media (max-width: 600px) {
   html, body {
     max-width: 100% !important;
@@ -323,15 +324,16 @@
   .image-container {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
 
-  /* Bigger Photo Gallery Images */
+  /* Proportional Square Images for Mobile */
   .gallery-grid img, 
   .gallery-item img, 
   .clickable-img {
     width: 100% !important;
-    height: 180px !important; /* Image height increased from 130px to 180px */
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important; /* Makes images perfectly proportioned */
     object-fit: cover !important;
     border-radius: 8px !important;
   }
@@ -358,7 +360,9 @@
   }
 
   .gallery-grid img, .gallery-item img, .clickable-img {
-    height: 220px !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
     object-fit: cover !important;
   }
 }
