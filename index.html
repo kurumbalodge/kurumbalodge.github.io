@@ -298,10 +298,9 @@
       color: #bbb;
     }
 /* ========================================== */
-/* FINAL FIXED RESPONSIVE DESIGN              */
+/* FINAL FIXED RESPONSIVE DESIGN (BIGGER IMGS)*/
 /* ========================================== */
 
-/* Mobile Devices (Phones: up to 600px) */
 @media (max-width: 600px) {
   html, body {
     max-width: 100% !important;
@@ -324,14 +323,15 @@
   .image-container {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
+    gap: 10px !important;
   }
 
+  /* Bigger Photo Gallery Images */
   .gallery-grid img, 
   .gallery-item img, 
   .clickable-img {
     width: 100% !important;
-    height: 130px !important;
+    height: 180px !important; /* Image height increased from 130px to 180px */
     object-fit: cover !important;
     border-radius: 8px !important;
   }
@@ -358,7 +358,7 @@
   }
 
   .gallery-grid img, .gallery-item img, .clickable-img {
-    height: 180px !important;
+    height: 220px !important;
     object-fit: cover !important;
   }
 }
