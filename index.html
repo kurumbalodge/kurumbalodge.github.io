@@ -297,24 +297,27 @@
     .close-modal:hover {
       color: #bbb;
     }
-    /* ========================================== */
-/* FINAL PERFECT SIZE RESPONSIVE DESIGN       */
+  /* ========================================== */
+/* MAXIMUM SIZE 2-COLUMN DISPLAY (MOBILE)    */
 /* ========================================== */
 
-/* Mobile Devices (Phones: up to 600px) */
 @media (max-width: 600px) {
   html, body {
     max-width: 100% !important;
     overflow-x: hidden !important;
+    padding: 2px !important; /* Reduced outer padding to give maximum room */
   }
 
-  .container, section, header, footer {
+  /* Maximize gallery container width */
+  .container, section, header, footer, 
+  .gallery-grid, .gallery-section, .gallery, .photo-gallery, .gallery-container, .photo-grid, .image-container {
     width: 100% !important;
-    padding: 10px !important;
+    padding: 2px !important;
+    margin: 0 auto !important;
     box-sizing: border-box !important;
   }
 
-  /* Photo Gallery Grid Fix (2-Column View) */
+  /* 2-Column Grid with Minimal Gap */
   .gallery-grid, 
   .gallery-section, 
   .gallery, 
@@ -324,25 +327,24 @@
   .image-container {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
+    gap: 4px !important; /* Minimal gap so photos get full screen width */
   }
 
-  /* Perfectly Sized Photos (Wider & Balanced Height) */
+  /* Extra Large Height & Full Width for 2-Column Images */
   .gallery-grid img, 
   .gallery-item img, 
   .clickable-img {
     width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 4 / 3 !important; /* Ideal 4:3 display ratio for clear visibility */
+    height: 230px !important; /* Much bigger height */
     object-fit: cover !important;
-    border-radius: 8px !important;
+    border-radius: 6px !important;
   }
 
   /* Reviews Grid Fix (2-Column View) */
   .reviews, .review-container, .testimonials, .reviews-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
+    gap: 6px !important;
   }
 
   h1 { font-size: 22px !important; }
@@ -356,15 +358,15 @@
   .reviews, .review-container, .testimonials, .reviews-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 12px !important;
+    gap: 10px !important;
   }
 
   .gallery-grid img, .gallery-item img, .clickable-img {
     width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 4 / 3 !important;
+    height: 260px !important;
     object-fit: cover !important;
   }
+} 
 }
   </style>
 </head>
